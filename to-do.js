@@ -6,9 +6,20 @@ const ul_list = document.getElementById("ul_list");
 input_text.focus();
 
 const addItem = text => {
-    let newItem = `<li>${text} <button onclick="deleteItem(this.parentElement)">x</button></li>`;
-    i
+    const newItem = `<li>${text} <button onclick="deleteItem(this.parentElement)">x</button></li>`;
     ul_list.insertAdjacentHTML("beforeend", newItem);
+    input_text.value = "";
+    input_text.focus();
+}
+
+const clearList = () => {
+    ul_list.innerHTML = "";
+    input_text.value = "";
+    input_text.focus();
+}
+
+const deleteItem = target => {
+    target.remove();
     input_text.value = "";
     input_text.focus();
 }
@@ -19,3 +30,5 @@ form_input.addEventListener("submit", event => {
         addItem(input_text.value);
     }
 })
+
+button_clear.addEventListener("click", clearList);
